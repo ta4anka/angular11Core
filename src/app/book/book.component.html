@@ -1,5 +1,7 @@
-<div>Title: {{book.title}}</div>
-<div>Author: {{book.author}}</div>
-<div>Year: {{book.year}}</div>
-<div>Pages: {{book.pages}}</div>
+<div (click)="changeCharacterCount(book.title, $event)">Title: {{book.title}}</div>
+<div (click)="changeCharacterCount(book.author)">Author: {{book.author}}</div>
+<div (click)="changeCharacterCount(book.year)">Year: {{book.year}}</div>
+<div (click)="changeCharacterCount(book.pages)">Pages: {{book.pages}}</div>
 <div>Description: {{book.description}}</div>
+
+<div>Character count:{{characterCount}}</div>
