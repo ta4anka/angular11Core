@@ -27,4 +27,8 @@ export class BookService {
   getBooks(): Book[] {
     return this.books;
   }
+
+  addBook(book: Book): void {
+    this.books.push(book);
+  }
 }
