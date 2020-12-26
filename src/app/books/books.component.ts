@@ -9,6 +9,7 @@ import {BookService} from '../book.service';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+  counter = 0;
 
   constructor(private bookService: BookService) {
   }
@@ -19,5 +20,9 @@ export class BooksComponent implements OnInit {
 
   isJavaScript(book: Book): boolean {
     return book.title.indexOf('JavaScript') >= 0;
+  }
+
+  increment(): void {
+    this.counter++;
   }
 }
