@@ -2,11 +2,6 @@
   <h2>List of books:</h2>
   <div [ngClass]="{javascript: isJavaScript(book)}" *ngFor="let book of books | sort: 'title' : 'desc'"
        appBookFont [fontSelected]="'book-active'">
-    <h4>{{book.title | quote}}</h4>
-    <div>Author: {{book.author}}</div>
-    <div>Year: {{book.year}}</div>
-    <div>Pages: {{book.pages}}</div>
-    <div>Price: {{book.price | currency: 'UAH': 'symbol-narrow'}}</div>
-    <div>Description: {{book.description}}</div>
+    <app-book [book]="book"></app-book>
   </div>
 </div>
