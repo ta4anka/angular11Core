@@ -2,28 +2,27 @@
   <div class="card-header">Book details</div>
   <div class="card-body">
 
-    <form (ngSubmit)="registerBook(userForm)" #userForm="ngForm" autocomplete="off">
+    <form (ngSubmit)="registerBook()" [formGroup]="bookForm">
 
       <div class="form-group">
         <label>Title</label>
-        <input type="text" class="form-control" ngModel name="title" minlength="5" maxlength="50" #title=ngModel
-               placeholder="Enter book title">
+        <input type="text" class="form-control" formControlName="title" placeholder="Enter book title">
       </div>
-      <div class="alert alert-danger" *ngIf="!title.valid && title.dirty">Please, enter valid title</div>
+      <div class="alert alert-danger" *ngIf="isInvalid('title')">Please, enter valid title</div>
+
       <div class="form-group">
         <label>Author</label>
-        <input type="text" class="form-control" ngModel name="author" #author=ngModel required
-               placeholder="Enter book author">
+        <input type="text" class="form-control" formControlName="author" placeholder="Enter book author">
       </div>
-      <div class="alert alert-danger" *ngIf="!author.valid && author.dirty">Please, enter valid author</div>
+      <div class="alert alert-danger" *ngIf="isInvalid('author')">Please, enter valid author</div>
+
       <div class="form-group">
         <label>Year</label>
-        <input type="text" class="form-control" ngModel name="year" required #year=ngModel
-               placeholder="Enter book year">
+        <input type="text" class="form-control" formControlName="year" placeholder="Enter book year">
       </div>
-      <div class="alert alert-danger" *ngIf="!year.valid && year.dirty">Please, enter valid year</div>
-      <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Save</button>
 
+      <div class="alert alert-danger" *ngIf="isInvalid('year')">Please, enter valid year</div>
+      <button type="submit" class="btn btn-primary" [disabled]="!bookForm.valid">Save</button>
     </form>
 
   </div>
