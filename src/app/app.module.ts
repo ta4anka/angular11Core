@@ -9,6 +9,7 @@ import {QuotePipe} from './pipes/quote.pipe';
 import {SortPipe} from './pipes/sort.pipe';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BookDetailsComponent} from './book-details/book-details.component';
+import { BookFontDirective } from './directives/book-font.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {BookDetailsComponent} from './book-details/book-details.component';
     BooksComponent,
     QuotePipe,
     SortPipe,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookFontDirective
   ],
   imports: [
     BrowserModule,

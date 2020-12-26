@@ -7,3 +7,12 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.book-selected {
+  font-style: italic;
+}
+
+.book-active {
+  font-size: 22px;
+  background-color: aquamarine;
+}
