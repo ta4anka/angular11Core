@@ -1,5 +1,18 @@
 <header>
-  <a [routerLink]="'/books'" routerLinkActive="link-active">Books</a>
-  <a [routerLink]="'/news'" routerLinkActive="link-active">News</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/'">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/news'">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/books/1'">JavaScript</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
 <router-outlet></router-outlet>

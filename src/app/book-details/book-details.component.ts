@@ -4,6 +4,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, 
 import {Book} from '../model/book';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -13,7 +14,7 @@ import {map} from 'rxjs/operators';
 export class BookDetailsComponent implements OnInit {
   bookForm: FormGroup;
 
-  constructor(private bookService: BookService, formBuilder: FormBuilder) {
+  constructor(private bookService: BookService, formBuilder: FormBuilder, private route: ActivatedRoute) {
     this.bookForm = formBuilder.group({
       title: formBuilder.control('', [Validators.required]),
       author: formBuilder.control('', [Validators.required, this.validateAuthor]),
@@ -23,6 +24,8 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const book = this.route.snapshot.data.book as Book;
+    this.bookForm.patchValue(book);
   }
 
   registerBook(): void {

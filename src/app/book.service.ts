@@ -24,4 +24,10 @@ export class BookService {
       (books: Book[]) => books.map(book => book.title)
         .indexOf(title) >= 0));
   }
+
+  findBook(bookId: number): Observable<Book | undefined> {
+    return this.getBooks().pipe(
+      map(books => books.find(value => value.id === bookId))
+    );
+  }
 }
