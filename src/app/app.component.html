@@ -1,2 +1,5 @@
-<app-book-details></app-book-details>
-<app-books></app-books>
+<header>
+  <a [routerLink]="'/books'" routerLinkActive="link-active">Books</a>
+  <a [routerLink]="'/news'" routerLinkActive="link-active">News</a>
+</header>
+<router-outlet></router-outlet>
