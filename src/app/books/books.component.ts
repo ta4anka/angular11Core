@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from '../model/book';
 import {BookService} from '../book.service';
+import {range} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-books',
@@ -10,8 +12,10 @@ import {BookService} from '../book.service';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
   counter = 0;
+  array: Array<string> = new Array<string>();
 
   constructor(private bookService: BookService) {
+    this.createLatinLowercaseLetters();
   }
 
   ngOnInit(): void {
@@ -24,5 +28,12 @@ export class BooksComponent implements OnInit {
 
   increment(): void {
     this.counter++;
+  }
+
+  createLatinLowercaseLetters(): void {
+    range('a'.charCodeAt(0), 26)
+      .pipe(map(i => String.fromCharCode(i as number)))
+      .subscribe(res => this.array.push(res));
+    console.log(`Array with letters: ${this.array.join(',')}`);
   }
 }
