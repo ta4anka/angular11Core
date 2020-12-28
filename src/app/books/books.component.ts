@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from '../model/book';
 import {BookService} from '../book.service';
-import {range} from 'rxjs';
+import {Observable, range} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -10,7 +10,8 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  books: Book[] = [];
+  // books: Book[] = [];
+  books$: Observable<Book[]> | undefined;
   counter = 0;
   array: Array<string> = new Array<string>();
 
@@ -19,7 +20,7 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.books = this.bookService.getBooks();
+    this.books$ = this.bookService.getBooks();
   }
 
   isJavaScript(book: Book): boolean {

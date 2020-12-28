@@ -1,40 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Book} from './model/book';
 import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-
-  books: Book[];
-
-  constructor() {
-    this.books = [
-      {
-        author: 'Douglas Crockford', year: 2008, title: 'JavaScript: The Good Parts', pages: 172,
-        price: 350,
-        description: 'This authoritative book scrapes away these bad features to reveal a subset of JavaScript that\'s more reliable, readable, and maintainable'
-      },
-      {
-        author: 'Nathan Rozentals', year: 2015, title: 'Mastering TypeScript', pages: 364,
-        price: 400,
-        description: 'Build enterprise-ready, industrial strength web applications using TypeScript and leading JavaScript frameworks'
-      },
-      {author: 'Mishko Hevery', year: 2020, title: 'Angular 11'}
-    ];
+  constructor(private http: HttpClient) {
   }
 
-  getBooks(): Book[] {
-    return this.books;
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>('http://localhost:3000/books');
   }
 
   addBook(book: Book): void {
-    this.books.push(book);
+// this.books.push(book);
   }
 
   bookExists(title: string): Observable<boolean> {
-    return of(this.books.map(book => book.title)
-      .indexOf(title) >= 0);
+    return this.getBooks().pipe(map(
+      (books: Book[]) => books.map(book => book.title)
+        .indexOf(title) >= 0));
   }
 }
