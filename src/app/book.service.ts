@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Book} from './model/book';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class BookService {
 
   addBook(book: Book): void {
     this.books.push(book);
+  }
+
+  bookExists(title: string): Observable<boolean> {
+    return of(this.books.map(book => book.title)
+      .indexOf(title) >= 0);
   }
 }
